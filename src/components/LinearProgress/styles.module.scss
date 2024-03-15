@@ -1,0 +1,52 @@
+.pureMaterialProgressLinear {
+    // Remove vendor-specific appearance properties
+    appearance: none;
+    border: none;
+    height: 0.25em;
+    font-size: 16px;
+    // Use SCSS variable for color
+    color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+    background-color: rgba(var(--pure-material-primary-rgb, 33, 150, 243), 0.12);
+
+    &::-webkit-progress-bar {
+        background-color: transparent;
+    }
+
+    // Determinate styles
+    &::-webkit-progress-value,
+    &::-moz-progress-bar,
+    &::-ms-fill {
+        background-color: currentColor;
+        transition: all 0.2s;
+    }
+
+    // Indeterminate styles
+    &.indeterminate {
+        background-size: 200% 100%;
+        background-image: linear-gradient(to right, transparent 50%, currentColor 50%, currentColor 60%, transparent 60%, transparent 71.5%, currentColor 71.5%, currentColor 84%, transparent 84%);
+        animation: pure-material-progress-linear 2s infinite linear;
+
+        &::-moz-progress-bar {
+            background-color: transparent;
+        }
+
+        &::-ms-fill {
+            animation-name: none;
+        }
+    }
+}
+
+@keyframes pure-material-progress-linear {
+    0% {
+        background-size: 200% 100%;
+        background-position: left -31.25% top 0%;
+    }
+    50% {
+        background-size: 800% 100%;
+        background-position: left -49% top 0%;
+    }
+    100% {
+        background-size: 400% 100%;
+        background-position: left -102% top 0%;
+    }
+}
